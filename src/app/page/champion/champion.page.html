@@ -1,0 +1,120 @@
+<ion-content [fullscreen]="true">
+    <!-- Grid layout -->
+    <ion-grid>
+        <!-- row with 2 size 4 col justified to the end -->
+        <ion-row class="ion-justify-content-end">
+            <ion-col class="ion-text-center" size="4">
+                <ion-img src="/assets/logo/F1-logo.png" alt="F1-logo"></ion-img>
+            </ion-col>
+            <ion-col size="4">
+                <ion-img src="/assets/logo/scuderia-ferrari-logo.png" class="ion-float-right" alt="scuderia-ferrari-logo">
+                </ion-img>
+            </ion-col>
+        </ion-row>
+        <!-- row displays the list of seasons from 2005 till current horizontally -->
+
+        <ion-slides>
+            <ion-slide>
+                <ion-card>
+                    <img src="/assets/logo/1.jpg" />
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card>
+                    <img src="/assets/logo/3.jpg" />
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card>
+                    <img src="/assets/logo/7.jpg" />
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card>
+                    <img src="/assets/logo/6.jpg" />
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card>
+                    <img src="/assets/logo/5.jpg" />
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+
+        <ion-row class="ion-text-center ion-align-items-center heading">
+            <ion-col>
+                <!-- back arrow that shifts back to the previous year; arrow will be hiddin if there are no previous years(years before 2005) -->
+                <!-- 
+          years are sorted in decending order (adding 1 to the key will take me to the previous year)
+          eg. year 2008 key = 5; year 2007 key = 6; year 2006 key = 7;
+        -->
+                <div *ngIf="year_id + 1 < years.length" (click)="year_id = year_id + 1">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <!-- displays the before the selected year -->
+                    <h5 class="chevron-year">{{years[year_id+1]}}</h5>
+                </div>
+            </ion-col>
+            <ion-col size="8" class="center-col">
+                <div>
+                    <hr />
+                    <h5>
+                        F1 World Champions
+                        <br />
+                        <!-- displays the selected year -->
+                        {{years[year_id]}}
+                    </h5>
+                    <hr />
+                </div>
+            </ion-col>
+            <ion-col>
+                <!-- condition checks if the current year key is greater than zero (if the key is less than 1 the arrow to the next year won't show)-->
+                <div *ngIf="year_id > 0" (click)="year_id = year_id - 1">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <h5 class="chevron-year">{{years[year_id-1]}}</h5>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- list will loop through the list of the winners for every race for the selected year and initialize the index of a champion to "i"-->
+    <ion-list *ngFor="let champ of champion[years[year_id]]; let i = index">
+        <ion-item>
+            <ion-grid>
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="2" class="ion-text-center">
+                        {{i + 1}}
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <!-- ngClass will highlight the name of the winner with the highest points -->
+                            <label [ngClass]="champ.Results[0].Driver.permanentNumber == winner[years[year_id]] ? 'winner' : null">
+                <!-- display the name and surname of the driver -->
+                {{champ.Results[0].Driver.givenName + " " + champ.Results[0].Driver.familyName}}
+                <!-- float left the name of the constructor -->
+                <small class="ion-float-right">{{champ.Results[0].Constructor.name}}</small>
+              </label>
+                            <br>
+                            <ion-text>
+                                <small style="color:#ccc">
+                  <ion-icon name="time-outline"></ion-icon> {{champ.Results[0].Time.time}}
+                  |
+                  <ion-icon name="star-outline"></ion-icon> {{champ.Results[0].points}}
+                  |
+                  Grid {{champ.Results[0].grid}}
+                  <br>
+                  <b style="color: white;">
+                    {{champ.raceName}}
+                  </b>
+                  <span class="ion-float-right">
+                    <ion-icon name="attach"></ion-icon>
+                    {{champ.Results[0].laps}}
+                  </span>
+                </small>
+                            </ion-text>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+    <hr />
+</ion-content>

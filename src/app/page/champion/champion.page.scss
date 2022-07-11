@@ -1,0 +1,56 @@
+ion-card {
+    --ion-background-color: #000;
+    width: 98%;
+    height: 180px;
+    img {
+        height: 300%;
+        width: 120% !important;
+    }
+}
+
+ion-content {
+    //page background and text color
+    //--background: #000 url("../../../assets/logo/gradient.png") no-repeat center center / cover;
+    //--ion-background-color: linear-gradient(180deg, rgba(22, 24, 25, 1) 0%, rgba(66, 66, 66, 1) 100%);
+    --background: #000;
+    --color: white;
+    ion-grid {
+        ion-row {
+            ion-col {
+                ion-img {
+                    // default image size in grid column
+                    height: 35px;
+                }
+            }
+        }
+        .heading {
+            div {
+                ion-icon {
+                    color: #EE0000;
+                }
+            }
+        }
+    }
+    ion-list {
+        --ion-background-color: transparent;
+        ion-item {
+            color: white;
+            .winner {
+                color: #FDF100;
+                small {
+                    color: white;
+                }
+            }
+        }
+    }
+    hr {
+        border-top: solid 2px #EE0000;
+        width: 98px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .chevron-year {
+        display: none;
+    }
+}

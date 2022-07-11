@@ -1,0 +1,7 @@
+{
+  "name": "injozi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
