@@ -32,6 +32,8 @@ Angular Material modules and RxJs libraries has been used
 - Run npm install to install all packages.
 - Run ionic serve to run the app on web.
 - Run ionic serve -l to run the app on mobile emulator.
+- Go to http://localhost:8100 to access localhost development server
+- Go to http://localhost:8200 to access Ionic lab server for iOS and Android emulators.
 
 # Further help
 
